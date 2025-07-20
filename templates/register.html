@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registrar Usuario</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Registrar Usuario</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('registrar') }}" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required />
+      </div>
+      <div class="form-group">
+        <label for="imagen">Selecciona imagen facial:</label>
+        <input type="file" id="imagen" name="imagen" accept="image/png, image/jpeg" required />
+      </div>
+      <button type="submit">Registrar</button>
+    </form>
+    <div class="register-link">
+      <a href="{{ url_for('home') }}">Volver al menú principal</a>
+    </div>
+  </div>
+</body>
+</html>

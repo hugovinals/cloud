@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Menú Principal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="menu-container">
+        <h1>Bienvenido</h1>
+        <a href="{{ url_for('registrar') }}" class="btn">Registrar Usuario</a>
+        <a href="{{ url_for('reconocer') }}" class="btn">Reconocer Usuario</a>
+        <a href="{{ url_for('usuarios') }}" class="btn">Ver Usuarios</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Usuario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="menu-container">
+        <h2>Usuario: {{ nombre }}</h2>
+        <img src="{{ imagen_url }}" alt="Imagen de {{ nombre }}" style="max-width: 100%; border-radius: 8px;">
+        <br><br>
+        <a href="{{ url_for('usuarios') }}" class="btn">Volver a usuarios</a>
+    </div>
+</body>
+</html>

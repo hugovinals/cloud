@@ -1,0 +1,6 @@
+flask
+deepface
+numpy
+opencv-python-headless
+azure-storage-blob
+pyodbc
