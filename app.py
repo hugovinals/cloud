@@ -5,11 +5,25 @@ import pickle
 from werkzeug.utils import secure_filename
 from deepface import DeepFace
 from azure.storage.blob import BlobServiceClient
+from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
 
-# Azure Blob config
-AZURE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=storagefacial;AccountKey=XKkpEtRLAhI/oXDbrMixR1oiLxdGIwjr4Z9cuusIZag6nr3VlmqzEkTOk3oP6GENaSwXhp0eg8rq+AStQXgavw==;EndpointSuffix=core.windows.net"
+# URL de tu Key Vault
+keyvault_url = "https://facialkeys.vault.azure.net/"
+
+# Crear cliente para acceder a secretos
+credential = DefaultAzureCredential()
+client = SecretClient(vault_url=keyvault_url, credential=credential)
+
+# Obtener el secreto de la cadena de conexión de Blob Storage
+secret_name = "storage-facial"
+retrieved_secret = client.get_secret(secret_name)
+AZURE_CONNECTION_STRING = retrieved_secret.value
+
+# Nombre del contenedor en Blob Storage
 CONTAINER_NAME = "imagenes"
 
+# Crear cliente Blob usando la cadena de conexión obtenida del Key Vault
 blob_service_client = BlobServiceClient.from_connection_string(AZURE_CONNECTION_STRING)
 container_client = blob_service_client.get_container_client(CONTAINER_NAME)
 
