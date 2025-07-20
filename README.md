@@ -20,6 +20,7 @@ This project is a web application that allows you to register and recognize user
   - SQL Database (optional)
   - Key Vault (optional, for secrets management)
   - Web App (for deployment)
+  - Azure Functions
 
 ## 📁 Project Structure
 
@@ -36,18 +37,6 @@ project/
 │ └── style.css # CSS styling
 └── utils/
 └── db.py # Azure storage and logic functions
-
-
-## ☁️ Azure Functions Integration
-
-This project includes a simple Azure Function as a health check endpoint to monitor the backend status.
-
-- **Functionality:** Responds with “OK” to indicate the service is running.
-- **Benefits:** Easy monitoring of your deployed backend service health.
-- **Deployment:** Azure Functions can be deployed alongside your Flask app or separately.
-- **Usage:** The health check endpoint can be called periodically by monitoring tools to verify uptime.
-
----
 
 **Author:** Hugo Viñals  
 **Course:** Cloud Computing
