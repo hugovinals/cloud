@@ -2,15 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Menú Principal</title>
+    <title>Main page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="menu-container">
-        <h1>Bienvenido</h1>
-        <a href="{{ url_for('registrar') }}" class="btn">Registrar Usuario</a>
-        <a href="{{ url_for('reconocer') }}" class="btn">Reconocer Usuario</a>
-        <a href="{{ url_for('usuarios') }}" class="btn">Ver Usuarios</a>
+        <h1>Welcome</h1>
+        <a href="{{ url_for('registrar') }}" class="btn">Sign up</a>
+        <a href="{{ url_for('reconocer') }}" class="btn">Sign in</a>
+        <a href="{{ url_for('usuarios') }}" class="btn">Users</a>
     </div>
 </body>
 </html>

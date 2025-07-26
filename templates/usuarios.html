@@ -7,21 +7,21 @@
 </head>
 <body>
     <div class="login-container">
-        <h1>Usuarios Registrados</h1>
+        <h1>Registered users</h1>
 
         <ul style="list-style-type: none; padding: 0;">
             {% for nombre in usuarios %}
             <li style="margin-bottom: 1rem;">
                 <strong>{{ nombre }}</strong>
                 <form action="{{ url_for('eliminar_usuario', nombre=nombre) }}" method="post" style="display:inline;">
-                    <button type="submit">Eliminar</button>
+                    <button type="submit">Delete</button>
                 </form>
             </li>
             {% endfor %}
         </ul>
 
         <div class="register-link">
-            <a href="{{ url_for('home') }}">Volver al inicio</a>
+            <a href="{{ url_for('home') }}">Come back</a>
         </div>
     </div>
 </body>
