@@ -3,7 +3,7 @@ from azure.identity import DefaultAzureCredential
 from azure.keyvault.secrets import SecretClient
 
 KEY_VAULT_URL = "https://facialkeys.vault.azure.net/"
-SQL_SECRET_NAME = "basedatos"  # Nombre del secreto con tu cadena de conexión
+SQL_SECRET_NAME = "BD"  # Nombre del secreto con tu cadena de conexión
 
 def get_connection_string():
     credential = DefaultAzureCredential()

@@ -1,5 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 import os
+import numpy as np
 from werkzeug.utils import secure_filename
 from .recognition import (
     init_db, allowed_file, extraer_embedding, agregar_usuario,
@@ -92,3 +93,30 @@ def eliminar_usuario(nombre):
     eliminar_imagen_blob(nombre)
     flash(f"Usuario {nombre} eliminado.")
     return redirect(url_for("routes.usuarios"))
+@routes.route("/comparar", methods=["GET", "POST"])
+def comparar():
+    distancia = None
+    if request.method == "POST":
+        file1 = request.files.get("imagen1")
+        file2 = request.files.get("imagen2")
+
+        if not file1 or not file2 or file1.filename == "" or file2.filename == "":
+            flash("Ambas imágenes son necesarias.")
+            return redirect(url_for("routes.comparar"))
+
+        path1 = os.path.join(UPLOAD_FOLDER, secure_filename(file1.filename))
+        path2 = os.path.join(UPLOAD_FOLDER, secure_filename(file2.filename))
+        file1.save(path1)
+        file2.save(path2)
+
+        emb1 = extraer_embedding(path1)
+        emb2 = extraer_embedding(path2)
+
+        if not emb1 or not emb2:
+            flash("Error extrayendo embeddings.")
+            return redirect(url_for("routes.comparar"))
+
+        distancia = np.linalg.norm(np.array(emb1) - np.array(emb2))
+        print(f"Distancia calculada entre embeddings: {distancia}")
+
+    return render_template("comparar.html", distancia=distancia)
