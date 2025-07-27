@@ -3,9 +3,9 @@ import os
 import numpy as np
 from werkzeug.utils import secure_filename
 from .recognition import (
-    init_db, allowed_file, extraer_embedding, agregar_usuario,
+    allowed_file, extraer_embedding, agregar_usuario,
     comparar_con_base, subir_imagen_blob, eliminar_imagen_blob,
-    cargar_usuarios, guardar_usuarios
+    cargar_usuarios, eliminar_usuario
 )
 
 routes = Blueprint("routes", __name__)
@@ -86,13 +86,12 @@ def usuarios():
     return render_template("usuarios.html", usuarios=nombres)
 
 @routes.route("/usuarios/eliminar/<nombre>", methods=["POST"])
-def eliminar_usuario(nombre):
-    usuarios = cargar_usuarios()
-    usuarios = [u for u in usuarios if u["nombre"] != nombre]
-    guardar_usuarios(usuarios)
-    eliminar_imagen_blob(nombre)
+def eliminar_usuario_route(nombre):
+    eliminar_usuario(nombre)             # Borra de la base de datos
+    eliminar_imagen_blob(nombre)         # Borra de Azure Blob Storage
     flash(f"Usuario {nombre} eliminado.")
     return redirect(url_for("routes.usuarios"))
+
 @routes.route("/comparar", methods=["GET", "POST"])
 def comparar():
     distancia = None
