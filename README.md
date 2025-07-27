@@ -26,17 +26,17 @@ This project is a web application that allows you to register and recognize user
 
 project/
 │
-├── app.py # Main Flask application
-├── requirements.txt # Python dependencies
-├── templates/ # HTML templates
-│ ├── home.html
-│ ├── register.html
-│ ├── recognize.html
-│ └── usuarios.html
+├── app.py                     # Main Flask application and routes
+├── requirements.txt           # Python dependencies
+├── templates/                 # HTML templates
+│   ├── home.html
+│   ├── register.html
+│   ├── recognize.html
+│   └── usuarios.html
 ├── static/
-│ └── style.css # CSS styling
-└── utils/
-└── db.py # Azure storage and logic functions
+│   ├── uploads/               # Temporary image uploads folder
+│   └── style.css              # CSS styling
+├── recognition.py             # Facial recognition and Azure Blob logic
 
 **Author:** Hugo Viñals  
 **Course:** Cloud Computing
